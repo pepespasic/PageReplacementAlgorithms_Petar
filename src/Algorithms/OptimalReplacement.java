@@ -12,7 +12,7 @@ public class OptimalReplacement {
 
 
 
-    public void optimal(int[] b, int frames) {
+    public int optimal(int[] b, int frames) {
         if (frames < 1) {
             throw new IllegalArgumentException("Frames can't be zero or negative.");
         }
@@ -53,6 +53,12 @@ public class OptimalReplacement {
                         pageFaults++;
                         System.out.println(Arrays.toString(arr));
                         index++;
+                    }
+                    else {
+                        if (i == 2) {
+                            System.out.println(Arrays.toString(arr));
+                            i++;
+                        }
                     }
                 }
 
@@ -107,11 +113,10 @@ public class OptimalReplacement {
             }
             i++;
         }
-        System.out.print("Page faults: ");
-        System.out.print(pageFaults);
+        return pageFaults;
     }
 
-    public void optimalRandom(int n, int frames) {
+    public int optimalRandom(int n, int frames) {
         if (frames < 1) {
             throw new IllegalArgumentException("Frames can't be zero or negative.");
         }
@@ -154,6 +159,11 @@ public class OptimalReplacement {
                     if (unique) {
                         arr[index] = b[i];
                         pageFaults++;
+                        System.out.println(Arrays.toString(arr));
+                        index++;
+                    }
+                    else {
+                        arr[frames-1] = b[frames];
                         System.out.println(Arrays.toString(arr));
                         index++;
                     }
@@ -208,7 +218,6 @@ public class OptimalReplacement {
             }
             i++;
         }
-        System.out.print("Page faults: ");
-        System.out.print(pageFaults);
+        return pageFaults;
     }
 }

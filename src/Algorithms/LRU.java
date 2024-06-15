@@ -11,7 +11,7 @@ public class LRU {
 
 
 
-    public void lru(int[] b, int frames) {
+    public int lru(int[] b, int frames) {
         if (frames < 1) {
             throw new IllegalArgumentException("Frames can't be zero or negative.");
         }
@@ -53,6 +53,12 @@ public class LRU {
                         System.out.println(Arrays.toString(arr));
                         index++;
                     }
+                    else {
+                        arr[frames-1] = b[frames];
+                        pageFaults++;
+                        System.out.println(Arrays.toString(arr));
+                        index++;
+                    }
                 }
 
             }
@@ -89,11 +95,10 @@ public class LRU {
             }
             i++;
         }
-        System.out.print("Page faults: ");
-        System.out.print(pageFaults);
+        return pageFaults;
     }
 
-    public void lruRandom(int n, int frames) {
+    public int lruRandom(int n, int frames) {
         if(frames < 1) {
             throw new IllegalArgumentException("Frames can't be zero or negative.");
         }
@@ -136,7 +141,14 @@ public class LRU {
                         }
                     }
                     if (unique) {
+                        System.out.println(i);
                         arr[index] = b[i];
+                        pageFaults++;
+                        System.out.println(Arrays.toString(arr));
+                        index++;
+                    }
+                    else {
+                        arr[frames-1] = b[frames];
                         pageFaults++;
                         System.out.println(Arrays.toString(arr));
                         index++;
@@ -177,7 +189,6 @@ public class LRU {
             }
             i++;
         }
+        return pageFaults;
     }
-
-
 }

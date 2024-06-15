@@ -9,7 +9,7 @@ public class FIFO {
     public int pageFaults;
     public boolean unique;
 
-    public void fifo(int[] b, int frames) {
+    public int fifo(int[] b, int frames) {
         if(frames < 1) {
             throw new IllegalArgumentException("Frames can't be zero or negative.");
         }
@@ -88,11 +88,10 @@ public class FIFO {
             }
             i++;
         }
-        System.out.print("Page faults: ");
-        System.out.print(pageFaults);
+        return pageFaults;
     }
 
-    public void fifoRandom(int n, int frames) {
+    public int fifoRandom(int n, int frames) {
         if(frames < 1) {
             throw new IllegalArgumentException("Frames can't be zero or negative.");
         }
@@ -177,5 +176,6 @@ public class FIFO {
             }
             i++;
         }
+        return pageFaults;
     }
 }
