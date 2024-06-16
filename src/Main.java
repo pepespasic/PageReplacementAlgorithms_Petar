@@ -8,8 +8,8 @@ public class Main {
 //        lru();
 //        optimal();
         fifoRandom();
-        //lruRandom();
-        //optimalRandom();
+        lruRandom();
+        optimalRandom();
     }
 
     public static void fifo() {
@@ -66,11 +66,11 @@ public class Main {
         System.out.println();
         System.out.println("FIFO Random:");
         FIFO a = new FIFO();
-//        System.out.println(a.fifoRandom(15,3));
-//        System.out.println();
-//
-//        System.out.println(a.fifoRandom(15, 5));
-//        System.out.println();
+        System.out.println(a.fifoRandom(15,3));
+        System.out.println();
+
+        System.out.println(a.fifoRandom(15, 5));
+        System.out.println();
 
         System.out.println(a.fifoRandom(15, 7));
         System.out.println();

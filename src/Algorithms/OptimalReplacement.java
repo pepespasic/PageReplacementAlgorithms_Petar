@@ -4,72 +4,54 @@ import java.util.Random;
 
 public class OptimalReplacement {
     public int pageFaults;
-    public boolean unique;
     public boolean contains;
 
+    /**
+     * Throws illegal argument exception if frames are less than one.
+     * Returns true if an element is present in
+     * array of frames false otherwise.
+     * @param arr array of frames
+     * @param index index of frames array
+     * @param elem current element in array of references
+     * @return true or false
+     */
+    public boolean contains(int[] arr, int index, int elem){
+        for(int i = 0; i < index; i++) {
+            if (elem == arr[i]) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-
+    /**
+     * Throws illegal argument exception if frames are less than one.
+     * Replaces element that will not be used for longest time in
+     * the future with current element if not present in array of frames.
+     * @param b array of references
+     * @param frames frame size
+     * @return pageFaults
+     */
     public int optimal(int[] b, int frames) {
         if (frames < 1) {
             throw new IllegalArgumentException("Frames can't be zero or negative.");
         }
         pageFaults = 0;
-        int count = 1;
         int[] arr = new int[frames];
         int[] indexes = new int[frames];
         int i = 0;
         int index = 0;
         int optIndex;
-        int u;
-        int h = 0;
         while (i < b.length) {
             if (pageFaults < frames) {
-                if (i == 0) {
-                    arr[index] = b[i];
+                if (!contains(arr, index, b[i])) {
                     pageFaults++;
-                    System.out.println(Arrays.toString(arr));
-                    index++;
+                    arr[index++] = b[i];
                 }
-                else if (i == 1) {
-                    if (b[i] != arr[0]) {
-                        arr[index] = b[i];
-                        pageFaults++;
-                        System.out.println(Arrays.toString(arr));
-                        index++;
-                    }
+                System.out.println(Arrays.toString(arr));
+                if (index == frames) {
+                    index = 0;
                 }
-                else {
-                    unique = true;
-                    count += i - 1;
-                    for (int k = 0; k < count; k++) {
-                        if (b[k] == b[count]) {
-                            unique = false;
-                            break;
-                        }
-                    }
-                    if (unique) {
-                        arr[index] = b[i];
-                        pageFaults++;
-                        System.out.println(Arrays.toString(arr));
-                        index++;
-                    }
-                    else {
-                        System.out.println(Arrays.toString(arr));
-                        u = i + 1;
-                        do {
-                            if (b[u] != b[h]) {
-                                h++;
-                            } else {
-                                u++;
-                            }
-                        } while (u != h);
-                        arr[index] = b[h];
-                        pageFaults++;
-                        index++;
-                        h = 0;
-                    }
-                }
-
             }
             else {
                 index = 0;
@@ -124,6 +106,14 @@ public class OptimalReplacement {
         return pageFaults;
     }
 
+    /**
+     * Throws illegal argument exception if frames are less than one.
+     * Replaces element that will not be used for longest time in
+     * the future with current element if not present in array of frames.
+     * @param n reference string size
+     * @param frames frame size
+     * @return pageFaults
+     */
     public int optimalRandom(int n, int frames) {
         if (frames < 1) {
             throw new IllegalArgumentException("Frames can't be zero or negative.");
@@ -134,62 +124,26 @@ public class OptimalReplacement {
             int num = rand.nextInt(10);
             b[i] = num;
         }
+        System.out.println(Arrays.toString(b));
+        System.out.println();
         pageFaults = 0;
-        int count = 1;
         int[] arr = new int[frames];
         int[] indexes = new int[frames];
         int i = 0;
         int index = 0;
         int optIndex;
-        int u;
-        int h = 0;
         while (i < n) {
             if (pageFaults < frames) {
-                if (i == 0) {
-                    arr[index] = b[i];
+                if (!contains(arr, index, b[i])) {
                     pageFaults++;
-                    System.out.println(Arrays.toString(arr));
-                    index++;
-                } else if (i == 1) {
-                    if (b[i] != arr[0]) {
-                        arr[index] = b[i];
-                        pageFaults++;
-                        System.out.println(Arrays.toString(arr));
-                        index++;
-                    }
-                } else {
-                    unique = true;
-                    count += i - 1;
-                    for (int k = 0; k < count; k++) {
-                        if (b[k] == b[count]) {
-                            unique = false;
-                            break;
-                        }
-                    }
-                    if (unique) {
-                        arr[index] = b[i];
-                        pageFaults++;
-                        System.out.println(Arrays.toString(arr));
-                        index++;
-                    }
-                    else {
-                        System.out.println(Arrays.toString(arr));
-                        u = i + 1;
-                        do {
-                            if (b[u] != b[h]) {
-                                h++;
-                            } else {
-                                u++;
-                            }
-                        } while (u != h);
-                        arr[index] = b[h];
-                        pageFaults++;
-                        index++;
-                        h = 0;
-                    }
+                    arr[index++] = b[i];
                 }
-
-            } else {
+                System.out.println(Arrays.toString(arr));
+                if (index == frames) {
+                    index = 0;
+                }
+            }
+            else {
                 index = 0;
                 for (int j = index; j < arr.length; j++) {
                     if (b[i] == arr[j]) {
