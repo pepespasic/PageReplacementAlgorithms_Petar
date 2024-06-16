@@ -4,12 +4,15 @@ import Algorithms.OptimalReplacement;
 
 public class Main {
     public static void main(String[] args) {
-        fifoTest();
-        lruTest();
-        optimalTest();
+//        fifo();
+//        lru();
+//        optimal();
+        fifoRandom();
+        //lruRandom();
+        //optimalRandom();
     }
 
-    public static void fifoTest() {
+    public static void fifo() {
         System.out.println("FIFO:");
         FIFO b = new FIFO();
         int [] a = {7,0,1,2,0,3,0,4,2,3,0,3,2,1,2,0,1,7,0,1};
@@ -25,7 +28,7 @@ public class Main {
         System.out.println();
     }
 
-    public static void lruTest() {
+    public static void lru() {
         System.out.println();
         System.out.println("LRU:");
         LRU d = new LRU();
@@ -42,7 +45,7 @@ public class Main {
         System.out.println();
     }
 
-    public static void optimalTest() {
+    public static void optimal() {
         System.out.println();
         System.out.println("OPT:");
      OptimalReplacement f = new OptimalReplacement();
@@ -58,4 +61,48 @@ public class Main {
         System.out.println(f.optimal(j, 3));
         System.out.println();
     }
+
+    public static void fifoRandom() {
+        System.out.println();
+        System.out.println("FIFO Random:");
+        FIFO a = new FIFO();
+//        System.out.println(a.fifoRandom(15,3));
+//        System.out.println();
+//
+//        System.out.println(a.fifoRandom(15, 5));
+//        System.out.println();
+
+        System.out.println(a.fifoRandom(15, 7));
+        System.out.println();
+    }
+
+    public static void lruRandom() {
+        System.out.println();
+        System.out.println("LRU Random:");
+        LRU b = new LRU();
+        System.out.println(b.lruRandom(15,3));
+        System.out.println();
+
+        System.out.println(b.lruRandom(15, 5));
+        System.out.println();
+
+        System.out.println(b.lruRandom(15, 7));
+        System.out.println();
+    }
+
+    public static void optimalRandom() {
+        System.out.println();
+        System.out.println("OPT Random:");
+        OptimalReplacement c = new OptimalReplacement();
+        System.out.println(c.optimalRandom(15,3));
+        System.out.println();
+
+        System.out.println(c.optimalRandom(15, 5));
+        System.out.println();
+
+        System.out.println(c.optimalRandom(15, 7));
+        System.out.println();
+    }
+
+
 }

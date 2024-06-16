@@ -21,6 +21,8 @@ public class LRU {
         int i = 0;
         int index = 0;
         int lruIndex;
+        int u;
+        int h = 0;
         ArrayList<Integer> list = new ArrayList<>();
         while (i < b.length) {
             if (pageFaults < frames) {
@@ -54,10 +56,19 @@ public class LRU {
                         index++;
                     }
                     else {
-                        arr[frames-1] = b[frames];
-                        pageFaults++;
                         System.out.println(Arrays.toString(arr));
+                        u = i + 1;
+                        do {
+                            if (b[u] != b[h]) {
+                                h++;
+                            } else {
+                                u++;
+                            }
+                        } while (u != h);
+                        arr[index] = b[h];
+                        pageFaults++;
                         index++;
+                        h = 0;
                     }
                 }
 
@@ -114,6 +125,8 @@ public class LRU {
         int index = 0;
         int i = 0;
         int lruIndex;
+        int u;
+        int h = 0;
         ArrayList<Integer> list = new ArrayList<>();
         while (i < n) {
             if (pageFaults < frames) {
@@ -148,10 +161,19 @@ public class LRU {
                         index++;
                     }
                     else {
-                        arr[frames-1] = b[frames];
-                        pageFaults++;
                         System.out.println(Arrays.toString(arr));
+                        u = i + 1;
+                        do {
+                            if (b[u] != b[h]) {
+                                h++;
+                            } else {
+                                u++;
+                            }
+                        } while (u != h);
+                        arr[index] = b[h];
+                        pageFaults++;
                         index++;
+                        h = 0;
                     }
                 }
 

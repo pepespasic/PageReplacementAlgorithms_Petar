@@ -3,7 +3,7 @@ package Algorithms;
 
 import java.util.Arrays;
 import java.util.Random;
-import java.util.Set;
+
 
 public class FIFO {
     public int pageFaults;
@@ -18,6 +18,8 @@ public class FIFO {
         int[] arr = new int[frames];
         int index = 0;
         int i = 0;
+        int u;
+        int h = 0;
         while (i < b.length) {
             if (pageFaults < frames) {
                 if (i == 0) {
@@ -49,6 +51,22 @@ public class FIFO {
                        System.out.println(Arrays.toString(arr));
                        index++;
                    }
+                   else {
+                       System.out.println(Arrays.toString(arr));
+                       u = i + 1;
+                       do {
+                           if (b[u] != b[h]) {
+                               h++;
+                           } else {
+                               u++;
+                           }
+                       } while (u != h);
+                       arr[index] = b[h];
+                       pageFaults++;
+                       index++;
+                       h = 0;
+                   }
+
                 }
 
             }
@@ -106,6 +124,8 @@ public class FIFO {
         int[] arr = new int[frames];
         int index = 0;
         int i = 0;
+        int u;
+        int h = 0;
         while (i < n) {
             if (pageFaults < frames) {
                 if (i == 0) {
@@ -123,8 +143,9 @@ public class FIFO {
                     }
                 }
                 else {
-                    unique = true;
                     count += i - 1;
+                    unique = true;
+                    System.out.println(count);
                     for (int k = 0; k < count; k++) {
                         if (b[k] == b[count]) {
                             unique = false;
@@ -137,6 +158,22 @@ public class FIFO {
                         System.out.println(Arrays.toString(arr));
                         index++;
                     }
+                    else {
+                        System.out.println(Arrays.toString(arr));
+                        u = i + 1;
+                        do {
+                            if (b[u] != b[h]) {
+                                h++;
+                            } else {
+                                u++;
+                            }
+                        } while (u != h);
+                        arr[index] = b[h];
+                        pageFaults++;
+                        index++;
+                        h = 0;
+                    }
+
                 }
 
             }

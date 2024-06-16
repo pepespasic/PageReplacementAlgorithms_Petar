@@ -1,8 +1,5 @@
 package Algorithms;
-
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Random;
 
 public class OptimalReplacement {
@@ -23,6 +20,8 @@ public class OptimalReplacement {
         int i = 0;
         int index = 0;
         int optIndex;
+        int u;
+        int h = 0;
         while (i < b.length) {
             if (pageFaults < frames) {
                 if (i == 0) {
@@ -55,10 +54,19 @@ public class OptimalReplacement {
                         index++;
                     }
                     else {
-                        if (i == 2) {
-                            System.out.println(Arrays.toString(arr));
-                            i++;
-                        }
+                        System.out.println(Arrays.toString(arr));
+                        u = i + 1;
+                        do {
+                            if (b[u] != b[h]) {
+                                h++;
+                            } else {
+                                u++;
+                            }
+                        } while (u != h);
+                        arr[index] = b[h];
+                        pageFaults++;
+                        index++;
+                        h = 0;
                     }
                 }
 
@@ -74,8 +82,8 @@ public class OptimalReplacement {
                 }
                 if (index == arr.length) {
                     contains = false;
-                    for (int l = 0; l < arr.length; l++) {
-                        if (b[i] == arr[l]) {
+                    for (int j : arr) {
+                        if (b[i] == j) {
                             contains = true;
                             break;
                         }
@@ -133,6 +141,8 @@ public class OptimalReplacement {
         int i = 0;
         int index = 0;
         int optIndex;
+        int u;
+        int h = 0;
         while (i < n) {
             if (pageFaults < frames) {
                 if (i == 0) {
@@ -163,9 +173,19 @@ public class OptimalReplacement {
                         index++;
                     }
                     else {
-                        arr[frames-1] = b[frames];
                         System.out.println(Arrays.toString(arr));
+                        u = i + 1;
+                        do {
+                            if (b[u] != b[h]) {
+                                h++;
+                            } else {
+                                u++;
+                            }
+                        } while (u != h);
+                        arr[index] = b[h];
+                        pageFaults++;
                         index++;
+                        h = 0;
                     }
                 }
 
@@ -180,8 +200,8 @@ public class OptimalReplacement {
                 }
                 if (index == arr.length) {
                     contains = false;
-                    for (int l = 0; l < arr.length; l++) {
-                        if (b[i] == arr[l]) {
+                    for (int j : arr) {
+                        if (b[i] == j) {
                             contains = true;
                             break;
                         }
